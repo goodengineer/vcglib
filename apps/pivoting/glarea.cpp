@@ -165,7 +165,6 @@ void GLArea::resizeGL(int w, int h) {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();  
   
-
   float r = w/(float)h;
   gluPerspective(60, r, 1, 4);
 
