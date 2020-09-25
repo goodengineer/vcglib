@@ -52,7 +52,7 @@ int  main()
   vector<Point3f> coordVec;
   vector<Point3i> indexVec;
   coordVec.push_back(Point3f(0,0,0));
-  for(int i=0;i<36;++i) {
+  for(short i=0;i<36;++i) {
     float angleRad = float(i)*M_PI/18.0;
     coordVec.push_back(Point3f(sin(angleRad),cos(angleRad),0));
     indexVec.push_back(Point3i(0,i+1,1+(i+1)%36));
