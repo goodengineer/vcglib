@@ -60,7 +60,7 @@ int  main(int argc, char **argv)
   float CellSize=0;
   bool DupFace=false;
 
-  int i=3;
+  short i=3;
   while(i<argc)
   {
     if(argv[i][0]!='-')
