@@ -81,7 +81,7 @@ void CapHole(MyMesh &m, MyMesh &capMesh, bool reverseFlag)
 
   for(size_t i=0;i<m.face.size();i++)
   {
-    for (int j=0;j<3;j++)
+    for (short j=0;j<3;j++)
     if (!m.face[i].IsV() && face::IsBorder(m.face[i],j))
     {
       MyFace* startB=&(m.face[i]);
