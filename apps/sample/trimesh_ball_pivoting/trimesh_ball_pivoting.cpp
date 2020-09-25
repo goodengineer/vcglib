@@ -33,8 +33,7 @@ using namespace std;
 class MyFace;
 class MyVertex;
 
-struct MyUsedTypes : public UsedTypes<	Use<MyVertex>		::AsVertexType,
-                                                                                Use<MyFace>			::AsFaceType>{};
+struct MyUsedTypes : public UsedTypes<Use<MyVertex>::AsVertexType, Use<MyFace>::AsFaceType>{};
 
 class MyVertex  : public Vertex< MyUsedTypes, vertex::Coord3f, vertex::Normal3f, vertex::BitFlags, vertex::Mark>{};
 class MyFace    : public Face  < MyUsedTypes, face::VertexRef, face::Normal3f, face::BitFlags > {};
@@ -58,10 +57,9 @@ int  main(int argc, char **argv)
         exit(0);
     }
 
-   float radius = 0.0f;
-   float clustering = 0.05;
-   int i = 3;
-    while(i<argc)
+   float radius = 0.0f,clustering = 0.05;
+   short i = 3;
+   while(i<argc)
         {
             if(argv[i][0]!='-')
                 {printf("Error unable to parse option '%s'\n",argv[i]); exit(0);}
