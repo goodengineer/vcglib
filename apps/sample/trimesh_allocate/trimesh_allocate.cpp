@@ -85,18 +85,14 @@ int main()
   for(fi = m.face.begin(); fi!=m.face.end(); ++fi )
   {
      if(!fi->IsD()) //    <---- Check added
-       {
         b += vcg::Barycenter(*fi);
-       }
   }
 
   // WRONG WAY of iterating: FN() != m.face.size() if there are deleted elements
   for(int i=0;i<m.FN();++i)
   {
      if(!fi->IsD())
-       {
        b += vcg::Barycenter(*fi);
-       }
   }
 
   // To remove the elements marked as deleted use
