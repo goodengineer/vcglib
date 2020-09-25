@@ -61,10 +61,8 @@ int main( int argc, char **argv )
 
   tri::UpdateTopology<MyMesh>::FaceFace(m);
 
-
   srand(time(0));
-  int ind0=rand()%m.vn;
-  int ind1=rand()%m.vn;
+  int ind0=rand()%m.vn,ind1=rand()%m.vn;
   printf("Computing harmonic field from vertex %i to vertex %i\n",ind0,ind1);
 
   // Get the two vertices with value set
