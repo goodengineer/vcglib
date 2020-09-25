@@ -61,9 +61,9 @@ bool callback(int percent, const char *str) {
 template <class MESH>
 bool NormalTest(typename face::Pos<typename MESH::FaceType> pos)
 {
-    //giro intorno al vertice e controllo le normali
+    //I go around the top and check the normals
     typename MESH::ScalarType thr = 0.0f;
-        typename MESH::CoordType NdP = vcg::TriangleNormal<typename MESH::FaceType>(*pos.f);
+    typename MESH::CoordType NdP = vcg::TriangleNormal<typename MESH::FaceType>(*pos.f);
     typename MESH::CoordType tmp, oop, soglia = typename MESH::CoordType(thr,thr,thr);
     face::Pos<typename MESH::FaceType> aux=pos;
     do{
@@ -93,8 +93,8 @@ int main(int argc,char ** argv){
         exit(0);
     }
 
-    int algorithm = atoi(argv[1]);
-    int holeSize  = atoi(argv[2]);
+    int algorithm = atoi(argv[1]),holeSize  = atoi(argv[2]);
+   
     if(algorithm < 0 && algorithm > 4)
     {
     printf("Error in algorithm's selection %i\n",algorithm);
@@ -113,7 +113,7 @@ int main(int argc,char ** argv){
     tri::UpdateTopology<MyMesh>::FaceFace(m);
     tri::UpdateNormal<MyMesh>::PerVertexPerFace(m);
     tri::UpdateFlags<MyMesh>::FaceBorderFromFF(m);
-  assert(tri::Clean<MyMesh>::IsFFAdjacencyConsistent(m));
+    assert(tri::Clean<MyMesh>::IsFFAdjacencyConsistent(m));
 
     //compute the average of face area
     float AVG,sumA=0.0f;
@@ -124,7 +124,7 @@ int main(int argc,char ** argv){
     {
             sumA += DoubleArea(*fi)/2;
             numA++;
-            for(int ind =0;ind<3;++ind)
+            for(short ind =0;ind<3;++ind)
                 fi->V(ind)->InitIMark();
     }
     AVG=sumA/numA;
@@ -138,7 +138,7 @@ int main(int argc,char ** argv){
   case 4: 		tri::Hole<MyMesh>::MinimumWeightFill(m,holeSize, false); tri::UpdateTopology<MyMesh>::FaceFace(m);      break;
     }
 
-    tri::UpdateFlags<MyMesh>::FaceBorderFromFF(m);
+  tri::UpdateFlags<MyMesh>::FaceBorderFromFF(m);
 
   assert(tri::Clean<MyMesh>::IsFFAdjacencyConsistent(m));
 
@@ -153,9 +153,7 @@ int main(int argc,char ** argv){
     for(; f != m.face.end();++f)
     {
         if(!f->IsD())
-        {
             f->SetS();
-        }
     }
 
     std::vector<MyMesh::FacePointer *> FPP;
@@ -188,6 +186,7 @@ int main(int argc,char ** argv){
 
     do
     {
+        bool test= true;
         vf.clear();
         f =  m.face.begin();
         f += indice;
@@ -195,14 +194,12 @@ int main(int argc,char ** argv){
         {
             if(f->IsS())
             {
-                bool test= true;
-                for(int ind =0;ind<3;++ind)
+                test= true;
+                for(short ind =0;ind<3;++ind)
                     f->V(ind)->InitIMark();
                 test = (DoubleArea<MyMesh::FaceType>(*f)/2) > AVG;
                 if(test)
-                {
                     vf.push_back(&(*f));
-                }
             }
         }
 
@@ -214,9 +211,7 @@ int main(int argc,char ** argv){
         added.clear();
 
         for(vfit = vf.begin(); vfit!=vf.end();++vfit)
-        {
             FPP.push_back(&(*vfit));
-        }
         int toadd= vf.size();
         MyMesh::FaceIterator f1,f2;
         f2 = tri::Allocator<MyMesh>::AddFaces(m,(toadd*2),FPP);
@@ -232,7 +227,7 @@ int main(int argc,char ** argv){
             TriSplit<MyMesh,CenterPointBarycenter<MyMesh> >::Apply(vf[i],&(*f1),&(*f2),&(*vertp),CenterPointBarycenter<MyMesh>() );
             f1->SetS();
             f2->SetS();
-            for(int itr=0;itr<3;itr++)
+            for(short itr=0;itr<3;itr++)
             {
                 f1->V(itr)->SetW();
                 f2->V(itr)->SetW();
@@ -265,11 +260,9 @@ int main(int argc,char ** argv){
     {
         if(f->IsS())
         {
-            for(int ind =0;ind<3;++ind){
+            for(short ind =0;ind<3;++ind){
                 if(NormalTest<MyMesh>(face::Pos<MyMesh::FaceType>(&(*f),ind )))
-                {
                     f->V(ind)->SetUserBit(UBIT);
-                }
             }
             f->ClearS();
         }
