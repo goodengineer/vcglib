@@ -31,7 +31,6 @@
 #include<vcg/complex/algorithms/point_sampling.h>
 #include<vcg/complex/algorithms/ransac_matching.h>
 
-
 #include<vcg/space/index/kdtree/kdtree.h>
 #include<vcg/space/point_matching.h>
 
