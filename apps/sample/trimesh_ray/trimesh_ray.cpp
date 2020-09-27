@@ -73,7 +73,7 @@ int main(int argc,char ** argv)
 	}
 
 	MyMesh m;
- int t0=clock();
+        int t0=clock();
 	// open a mesh
 	int err = tri::io::Importer<MyMesh>::Open(m,argv[1]);
   if(err) {
@@ -87,7 +87,7 @@ int main(int argc,char ** argv)
     widenessRad = math::ToRad(atof(argv[2]));
     printf("Setting wideness to %f degree\n",atof(argv[2]));
   }
-  int n_samples=2;
+  short n_samples=2;
   if(argc>3) n_samples = atoi(argv[3]);
   int samplePerVert = (n_samples*2+ 1)*(n_samples*2+ 1);
   printf("Using oversampling to %i  (%i sample per vertex)\n",n_samples,samplePerVert);
@@ -111,11 +111,9 @@ int main(int argc,char ** argv)
 
   typedef MyMesh::ScalarType ScalarType;
   int t1=clock();
-  float t;
+  float t,maxDist=m.bbox.Diag(),offset= maxDist / 10000.0;
   MyMesh::FaceType *rf;
   MyMesh::VertexIterator vi;
-  float maxDist=m.bbox.Diag();
-  float offset= maxDist / 10000.0;
   int totRay=0;
 
   ScalarType deltaRad=widenessRad/(ScalarType)(n_samples*2);
@@ -127,15 +125,14 @@ int main(int argc,char ** argv)
     vcg::Ray3f ray;
     ray.SetOrigin((*vi).cP()-((*vi).cN()*offset));
     Point3f dir0 = -(*vi).cN();
-    int cnt=0;
+    int cnt=0,y;
     ScalarType theta_init,phi_init,ro;
     dir0.ToPolarRad(ro,theta_init,phi_init);
     for (int x=-n_samples;x<=n_samples;x++)
-      for (int y=-n_samples;y<=n_samples;y++)
+      for (y=-n_samples;y<=n_samples;y++)
       {
-        ScalarType theta=theta_init+x*deltaRad;
-        ScalarType phi=phi_init+y*deltaRad;
-
+        ScalarType theta=theta_init+x*deltaRad,phi=phi_init+y*deltaRad;
+       
         if (theta<0) theta=2.0*M_PI+theta;
 
         Point3f dir;
