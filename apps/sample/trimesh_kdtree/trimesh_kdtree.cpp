@@ -69,13 +69,14 @@ int main( int argc, char **argv )
 
   KdTree<float> tree(ww);
   KdTree<float>::PriorityQueue queue;
-
+  int neighbours,neightId,i;
+  float avgDist;
   for (int j = 0; j < m.VN(); j++) {
       tree.doQueryK(m.vert[j].cP(), 3, queue);
-      int neighbours = queue.getNofElements();
-      float avgDist=0;
-      for (int i = 0; i < neighbours; i++) {
-          int neightId = queue.getIndex(i);
+      neighbours = queue.getNofElements();
+      avgDist=0;
+      for (i = 0; i < neighbours; i++) {
+          neightId = queue.getIndex(i);
           avgDist += Distance(m.vert[j].cP(),m.vert[neightId].cP());
       }
       m.vert[j].Q() = avgDist/=neighbours;
