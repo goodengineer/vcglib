@@ -74,13 +74,11 @@ int main( )
   // we rot and trans them
   // and we fit them
 
-  std::vector<vcg::Point3f> ExactVec;
-  std::vector<vcg::Point3f> PerturbVec;
+  std::vector<vcg::Point3f> ExactVec,PerturbVec;
   tri::MontecarloSampling(m,ExactVec,10);
   PerturbVec=ExactVec;
 
-  Matrix44f RotM;
-  Matrix44f TraM;
+  Matrix44f RotM,TraM;
   Point3f dir;
   vcg::math::MarsenneTwisterRNG rnd;
 
