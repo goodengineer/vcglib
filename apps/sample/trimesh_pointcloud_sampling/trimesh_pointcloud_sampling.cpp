@@ -51,10 +51,7 @@ int main( int argc, char **argv )
     return -1;
   }
 
-  MyMesh m;
-  MyMesh subM;
-  MyMesh cluM;
-  MyMesh rndM;
+  MyMesh m,subM,cluM,rndM;
 
   tri::MeshSampler<MyMesh> mps(subM);
   tri::MeshSampler<MyMesh> mrs(rndM);
