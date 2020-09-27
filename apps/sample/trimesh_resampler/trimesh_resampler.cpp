@@ -36,10 +36,8 @@ class MyVertex;
 
 struct MyUsedTypes : public UsedTypes<	Use<MyVertex>::AsVertexType,
                                         Use<MyFace>  ::AsFaceType>{};
-
 class MyVertex     : public Vertex< MyUsedTypes, vertex::Coord3f, vertex::Normal3f, vertex::BitFlags>{};
 class MyFace       : public Face< MyUsedTypes, face::VertexRef, face::Normal3f, face::BitFlags> {};
-
 class MyMesh       : public tri::TriMesh< std::vector< MyVertex>, std::vector< MyFace > > {};
 
 int main(int /*argc*/ , char **/*argv*/)
@@ -51,10 +49,7 @@ int main(int /*argc*/ , char **/*argv*/)
   float cell_side = bb.Diag()/30.0;
   bb.Offset(cell_side);
   Point3i box_size(bb.DimX()/cell_side,bb.DimY()/cell_side,bb.DimZ()/cell_side);
-  
   tri::Resampler<MyMesh,MyMesh>::Resample(base_mesh,resampled_mesh,bb,box_size,cell_side*5);
-  
   vcg::tri::io::ExporterPLY<MyMesh>::Save( resampled_mesh, "resampled_torus.ply");
-  
   printf("OK!\n");
 };
