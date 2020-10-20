@@ -1,5 +1,5 @@
 # debugging
-CONFIG += debug
+#CONFIG += debug
 
 # Base options
 TEMPLATE = app
@@ -14,10 +14,17 @@ CONFIG += stl
 # enable console
 CONFIG += console
 
+CONFIG += c++17
+
+# Mac specific Config required to avoid to make application bundles
+CONFIG -= app_bundle
+
+QMAKE_CXXFLAGS += -std=c++17
+
 # Awful..
-win32{
-  DEFINES += NOMINMAX
-}
+#win32{
+#  DEFINES += NOMINMAX
+#}
 
 # The following define is needed in gcc to remove the asserts
 win32-g++:DEFINES += NDEBUG
