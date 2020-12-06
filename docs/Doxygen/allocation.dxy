@@ -58,7 +58,7 @@ After calling these function it is safe to not check the IsD() state of every el
 m.vert.size() == m.VN()
 m.face.size() == m.FN()
 \endcode
-\note If there are no deleted elements in your mesh, the compactor functions returns immediately (it just test that the container size match the number of the elements) so it is safe to call it before lenghty operations.
+\note If there are no deleted elements in your mesh, the compactor functions returns immediately (it just tests that the container size match the number of the elements) so it is safe to call it before lenghty operations.
 \note If you are messing around with deleted elements it is rather dangerous to loop over mesh elements using \c FN() or \c VN() as end guards in the for; the following code snipped is \b WRONG:
 \dontinclude trimesh_allocate.cpp
 \skip WRONG
