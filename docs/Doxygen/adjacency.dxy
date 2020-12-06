@@ -117,7 +117,7 @@ This implementation does not work if the vertex is on the border. Just try with 
 
 Jumping Pos
 -----------
-The Jumping Pos works exactly like the Pos, only it does not bounce when it encounters the border. Instead, it jump around the vertex as if the to border faces sharing the vertex (faces f0 and f2 in the image) were adjacent.
+The Jumping Pos works exactly like the Pos, only it does not bounce when it encounters the border. Instead, it jumps around the vertex as if the to border faces sharing the vertex (faces f0 and f2 in the image) were adjacent.
 \code
 sf/apps/sample/trimesh_pos_demo/trimesh_pos_demo.cpp
 
@@ -182,7 +182,7 @@ class MyFace: public vcg::FaceSimp2<MyVertex,MyEdge,MyFace, vcg::face::VertexRef
 
 void OneRingNeighborhoodVF( MyVertex * v)
 {
-  vcg::face::VFIterator<MyFace> vfi(v); //initialize the iterator tohe first face
+  vcg::face::VFIterator<MyFace> vfi(v); //initialize the iterator to the first face
   for(;!vfi.End();++vfi)
   {
     MyFace* f = vfi.F();
@@ -203,7 +203,7 @@ We have a few handy functions to recover the set of faces/vertices incident on v
 Few facts on FF adjacency and VF adjacency
 ------------------------------------------
 
-Here we make a series of simple statements just to avoid confusion and try to help up choosing the adjacencies the best fit your needs.
+Here we make a series of simple statements just to avoid confusion and to try to help up choosing the adjacencies the best fit your needs.
 
 If the mesh is manifold, the one-ring neighborhood of a vertex computed by using Pos ( needs FF adjacency) is the same as the one computed by using VFIterator (needs VF adjacency). The order in which the faces are visited can be CW or CCW if using Pos, unspecified by using VIterator
 If the mesh is non-manifold, Pos may not find all the faces of the one-ring neighborhood of he vertex, VFIterator always does
