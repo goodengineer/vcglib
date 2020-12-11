@@ -5,12 +5,12 @@ There are many cases where some vertex or face attributes (like for example the 
 VCG Lib gives you a way to specify optional components, i.e. attributes that are not statically stored within the simplex but can be
 dynamically allocated only when you need them. Their use is totally transparent with respect to the standard, statically allocated components.
 
-To 'define' optional component you need to do two things:
+To 'define' an optional component you need to do two things:
 - to use a special type of container (derived from std::vector) in the mesh definition
 - to specify the right type of component in the simplex definition
 
 An optional component can be used only when it is 'enabled', e.g. when the memory for it has been allocated.
-An optional component can be enable by calling the function Enable.
+An optional component can be enabled by calling the function Enable.
 VCG Lib handles optional components with two alternative mechanisms: the first is called 'Ocf' (for Optional Component Fast)
 which uses one pointer for each simplex but it makes accessing optional attribute almost as fast as non-optional ones;
 the second is called 'Occ' (for Optional Component Compact) which only requires a little extra space for each mesh
@@ -37,7 +37,7 @@ afterwards the space for the component will be allocated and accessible until yo
 \skip HasFFAdjacency
 \until true
 
-Trying to access the value of a unallocated component before enabling or after disabling the corresponding component
+Trying to access the value of an unallocated component before enabling or after disabling the corresponding component
 will throw an assertion.
 
 \dontinclude trimesh_optional.cpp
