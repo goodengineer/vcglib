@@ -247,8 +247,8 @@ template<typename _MatrixType, int _UpLo> class LDLT
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was succesful,
-      *          \c NumericalIssue if the matrix.appears to be negative.
+      * \returns \c Success if computation was successful,
+      *          \c Numerical Issue if the matrix.appears to be negative.
       */
     ComputationInfo info() const
     {
@@ -272,7 +272,7 @@ template<typename _MatrixType, int _UpLo> class LDLT
     /** \internal
       * Used to compute and store the Cholesky decomposition A = L D L^* = U^* D U.
       * The strict upper part is used during the decomposition, the strict lower
-      * part correspond to the coefficients of L (its diagonal is equal to 1 and
+      * part corresponds to the coefficients of L (its diagonal is equal to 1 and
       * is not stored), and the diagonal entries correspond to D.
       */
     MatrixType m_matrix;
@@ -427,7 +427,6 @@ template<> struct ldlt_inplace<Lower>
 
       mat.coeffRef(j,j) += swj2/alpha;
       alpha += swj2/dj;
-
 
       // Update the terms of L
       Index rs = size-j-1;
@@ -619,7 +618,7 @@ bool LDLT<MatrixType,_UpLo>::solveInPlace(MatrixBase<Derived> &bAndX) const
 
 /** \returns the matrix represented by the decomposition,
  * i.e., it returns the product: P^T L D L^* P.
- * This function is provided for debug purpose. */
+ * This function is provided for debug purposes. */
 template<typename MatrixType, int _UpLo>
 MatrixType LDLT<MatrixType,_UpLo>::reconstructedMatrix() const
 {
