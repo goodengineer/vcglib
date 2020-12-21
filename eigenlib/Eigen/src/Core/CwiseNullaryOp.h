@@ -255,7 +255,7 @@ DenseBase<Derived>::LinSpaced(Sequential_t, const Scalar& low, const Scalar& hig
   * i.e., \c high-low is a scalar multiple of \c size-1, or if \c size is a scalar multiple of the
   * number of values \c high-low+1 (meaning each value can be repeated the same number of time).
   * If one of these two considions is not satisfied, then \c high is lowered to the largest value
-  * satisfying one of this constraint.
+  * satisfying one of this constraints.
   * Here are some examples:
   *
   * Example: \include DenseBase_LinSpacedInt.cpp
@@ -567,7 +567,7 @@ DenseBase<Derived>::Ones(Index rows, Index cols)
   * \only_for_vectors
   *
   * This variant is meant to be used for dynamic-size vector types. For fixed-size types,
-  * it is redundant to pass \a size as argument, so Ones() should be used
+  * it is redundant to pass \a size as an argument, so Ones() should be used
   * instead.
   *
   * Example: \include MatrixBase_ones_int.cpp
