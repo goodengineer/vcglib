@@ -244,8 +244,7 @@ template<typename T, int _Cols, int _Options> class DenseStorage<T, 0, Dynamic, 
 template<typename T, int Size, int _Options> class DenseStorage<T, Size, Dynamic, Dynamic, _Options>
 {
     internal::plain_array<T,Size,_Options> m_data;
-    Index m_rows;
-    Index m_cols;
+    Index m_rows,m_cols;
   public:
     EIGEN_DEVICE_FUNC DenseStorage() : m_rows(0), m_cols(0) {}
     EIGEN_DEVICE_FUNC explicit DenseStorage(internal::constructor_without_unaligned_array_assert)
@@ -334,8 +333,7 @@ template<typename T, int Size, int _Rows, int _Options> class DenseStorage<T, Si
 template<typename T, int _Options> class DenseStorage<T, Dynamic, Dynamic, Dynamic, _Options>
 {
     T *m_data;
-    Index m_rows;
-    Index m_cols;
+    Index m_rows,m_cols;
   public:
     EIGEN_DEVICE_FUNC DenseStorage() : m_data(0), m_rows(0), m_cols(0) {}
     EIGEN_DEVICE_FUNC explicit DenseStorage(internal::constructor_without_unaligned_array_assert)
