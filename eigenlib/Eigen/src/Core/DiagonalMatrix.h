@@ -320,8 +320,7 @@ struct Assignment<DstXprType, SrcXprType, Functor, Diagonal2Dense>
 {
   static void run(DstXprType &dst, const SrcXprType &src, const internal::assign_op<typename DstXprType::Scalar,typename SrcXprType::Scalar> &/*func*/)
   {
-    Index dstRows = src.rows();
-    Index dstCols = src.cols();
+    Index dstRows = src.rows(),dstCols = src.cols();
     if((dst.rows()!=dstRows) || (dst.cols()!=dstCols))
       dst.resize(dstRows, dstCols);
     
