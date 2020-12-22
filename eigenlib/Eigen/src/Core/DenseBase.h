@@ -581,7 +581,7 @@ template<typename Derived> class DenseBase
     EIGEN_DEVICE_FUNC DenseBase()
     {
       /* Just checks for self-consistency of the flags.
-       * Only do it when debugging Eigen, as this borders on paranoiac and could slow compilation down
+       * Only do it when debugging Eigen, as this borders on paranoic and could slow compilation down
        */
 #ifdef EIGEN_INTERNAL_DEBUGGING
       EIGEN_STATIC_ASSERT((EIGEN_IMPLIES(MaxRowsAtCompileTime==1 && MaxColsAtCompileTime!=1, int(IsRowMajor))
