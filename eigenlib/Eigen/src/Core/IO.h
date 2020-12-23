@@ -109,7 +109,7 @@ class WithFormat
     IOFormat m_format;
 };
 
-/** \returns a WithFormat proxy object allowing to print a matrix the with given
+/** \returns a WithFormat proxy object allowing to print a matrix with the given
   * format \a fmt.
   *
   * See class IOFormat for some examples.
@@ -155,30 +155,22 @@ std::ostream & print_matrix(std::ostream & s, const Derived& _m, const IOFormat&
 
   std::streamsize explicit_precision;
   if(fmt.precision == StreamPrecision)
-  {
     explicit_precision = 0;
-  }
   else if(fmt.precision == FullPrecision)
   {
     if (NumTraits<Scalar>::IsInteger)
-    {
       explicit_precision = 0;
-    }
     else
-    {
       explicit_precision = significant_decimals_impl<Scalar>::run();
-    }
   }
   else
-  {
     explicit_precision = fmt.precision;
-  }
 
   std::streamsize old_precision = 0;
   if(explicit_precision) old_precision = s.precision(explicit_precision);
 
-  bool align_cols = !(fmt.flags & DontAlignCols);
-  if(align_cols)
+  //bool align_cols = !(fmt.flags & DontAlignCols);
+  if(!(fmt.flags & DontAlignCols))
   {
     // compute the largest width
     for(Index j = 0; j < m.cols(); ++j)
