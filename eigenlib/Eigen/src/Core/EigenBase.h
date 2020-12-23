@@ -36,9 +36,6 @@ template<typename Derived> struct EigenBase
     */
   typedef Eigen::Index Index;
 
-  // FIXME is it needed?
-  typedef typename internal::traits<Derived>::StorageKind StorageKind;
-
   /** \returns a reference to the derived object */
   EIGEN_DEVICE_FUNC
   Derived& derived() { return *static_cast<Derived*>(this); }
