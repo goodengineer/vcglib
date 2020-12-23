@@ -17,7 +17,7 @@
 
 namespace Eigen {
 
-// On WINCE, std::abs is defined for int only, so let's defined our own overloads:
+// On WINCE, std::abs is defined for int only, so let's define our own overloads:
 // This issue has been confirmed with MSVC 2008 only, but the issue might exist for more recent versions too.
 #if EIGEN_OS_WINCE && EIGEN_COMP_MSVC && EIGEN_COMP_MSVC<=1500
 long        abs(long        x) { return (labs(x));  }
@@ -37,7 +37,7 @@ namespace internal {
   * - otherwise, global_math_functions_filtering_base<T>::type is a typedef for T.
   *
   * How it's used:
-  * To allow to defined the global math functions (like sin...) in certain cases, like the Array expressions.
+  * To allow to define the global math functions (like sin...) in certain cases, like the Array expressions.
   * When you do sin(array1+array2), the object array1+array2 has a complicated expression type, all what you want to know
   * is that it inherits ArrayBase. So we implement a partial specialization of sin_impl for ArrayBase<Derived>.
   * So we must make sure to use sin_impl<ArrayBase<Derived> > and not sin_impl<Derived>, otherwise our partial specialization
@@ -356,8 +356,7 @@ struct hypot_impl
   {
     EIGEN_USING_STD_MATH(abs);
     EIGEN_USING_STD_MATH(sqrt);
-    RealScalar _x = abs(x);
-    RealScalar _y = abs(y);
+    RealScalar _x = abs(x),_y = abs(y);
     Scalar p, qp;
     if(_x>_y)
     {
